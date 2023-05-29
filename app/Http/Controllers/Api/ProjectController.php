@@ -11,16 +11,17 @@ class ProjectController extends Controller
     public function index()
     {
         $projects = Project::all();
-        
+
         return response()->json([
             'success' => true,
             'return' => $projects
         ]);
     }
 
-    public function show(string $slug){
+    public function show(string $slug)
+    {
 
-        $project = Project::where('slug', $slug)->first();
+        $project = Project::where('slug', $slug)->with('technologies', 'type')->first();
 
         if ($project) {
             return response()->json([
@@ -29,7 +30,7 @@ class ProjectController extends Controller
             ]);
         } else {
             return response()->json([
-                'success'=> false,
+                'success' => false,
                 'return' => null
             ], 404);
         }
