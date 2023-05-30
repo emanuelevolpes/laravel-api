@@ -33,6 +33,7 @@ class NewComment extends Mailable
     public function envelope()
     {
         return new Envelope(
+            replyTo: 'info@portfolio.com',
             subject: 'New Comment',
         );
     }
