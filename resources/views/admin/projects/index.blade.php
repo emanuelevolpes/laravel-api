@@ -35,7 +35,7 @@
                 @foreach ($projects as $project)
                     <tr>
                         <th scope="row">{{ $project->id }}</th>
-                        <td>{{ $project->title }}</td>
+                        <td>@if ($project->image) <a href="#" class="btn btn-sm btn-secondary">image</a>@endif {{ $project->title }} @if ($project->comments->count()) <small>- ({{ $project->comments->count() }} comments)</small> @endif</td>
                         <td>
                             @if ($project->type_id)
                                 {{ $project->type->name }}
