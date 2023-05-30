@@ -11,11 +11,17 @@ class CommentController extends Controller
     public function store(Request $request){
 
         $data = $request->validate([
-            'author' => 'nullable|string|max:150',
+            'author' => 'nullable|string',
             'content' => 'string',
             'project_id' => 'integer|exists:projects,id'
         ]);
 
-        return $request->all();
+        $comment = new Comment();
+        $comment->author = $data['author'];
+        $comment->content = $data['content'];
+        $comment->project_id = $data['project_id'];
+        $comment->save();
+
+        return $comment;
     }
 }
