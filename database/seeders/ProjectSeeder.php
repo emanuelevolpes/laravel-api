@@ -23,7 +23,7 @@ class ProjectSeeder extends Seeder
         Project::truncate();
         Schema::enableForeignKeyConstraints();
 
-        for ($i = 0; $i < 10; $i++) {
+        for ($i = 0; $i < 50; $i++) {
             $type = Type::inRandomOrder()->first();
             $project = new Project();
             $project->title = $faker->sentence(3);
