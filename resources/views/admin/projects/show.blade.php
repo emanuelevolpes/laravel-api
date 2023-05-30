@@ -9,7 +9,6 @@
         @if ($project->type_id)
             <h2>Type: {{ $project->type->name }}</h2>
         @endif
-        <hr>
         <p>{{ $project->description }}</p>
 
         @if ($project->comments->count())
@@ -22,7 +21,7 @@
                             <div>
                                 <h4>{{ $comment->author !== null ? $comment->author : 'Unknown User' }}</h4>
                                 <p>{{ $comment->content }}</p>
-                                <form action="" method="POST">
+                                <form action="{{ route('admin.comments.destroy', $comment) }}" method="POST">
                                     @method('DELETE')
                                     @csrf
                                     <button class="btn btn-danger btn-sm">Delete</button>
